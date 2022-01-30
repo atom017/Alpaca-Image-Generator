@@ -1,0 +1,11 @@
+.style-container{
+    width:60%;
+    
+}
+
+.customizable{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+   
+}
