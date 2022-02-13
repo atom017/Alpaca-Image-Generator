@@ -3,7 +3,7 @@ import React,{ useContext,useState } from "react";
 const AssetContext = React.createContext();
 const AssetProvider = ({children}) =>{
     const [style,setStyle] = useState({
-        accessory:'flower.png',
+        accessory:'earings.png',
         background:'blue50.png',
         ear:'default.png',
         eye:'default.png',
@@ -13,11 +13,22 @@ const AssetProvider = ({children}) =>{
         leg:'default.png'
 
     })
+
+    const [btnPair,setBtnPair] = useState({
+        accessory:0,
+        background:0,
+        ear:0,
+        eye:0,
+        hair:0,
+        mouth:0,
+        neck:0,
+        leg:0
+    })
    
     const [bodyPart,setBodyPart] = useState('hair');
     return (
         <AssetContext.Provider
-        value={{style,setStyle,bodyPart,setBodyPart}}
+        value={{style,setStyle,bodyPart,setBodyPart,btnPair,setBtnPair}}
         >
             {children}
         </AssetContext.Provider>

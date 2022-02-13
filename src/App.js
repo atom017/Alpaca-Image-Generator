@@ -4,31 +4,59 @@ import Alpaca from './components/Alpaca';
 import Styles from './components/Styles';
 import { AssetProvider, useDefaultContext } from './Context';
 import { allParts,hair,ears,backgrounds,accessories,eyes,mouth,neck,leg } from './components/config';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import {exportComponentAsPNG} from 'react-component-export-image'
 
 
 function App() {
-  const {style,setStyle} = useDefaultContext();
+  const {style,setStyle,btnPair,setBtnPair} = useDefaultContext();
   const getRandomStyle = () =>{
+  const randAccess = randomStyle(accessories);
+  const randBg = randomStyle(backgrounds);
+  const randEar = randomStyle(ears);
+  const randEye = randomStyle(eyes);
+  const randHair = randomStyle(hair);
+  const randLeg = randomStyle(leg);
+  const randMouth = randomStyle(mouth);
+  const randNeck = randomStyle(neck);
+ 
    
-  setStyle(prev => ({...prev,hair:randomStyle(hair)}));
-  setStyle(prev => ({...prev,accessory:randomStyle(accessories)}));
-  setStyle(prev => ({...prev,background:randomStyle(backgrounds)}));
-  setStyle(prev => ({...prev,eye:randomStyle(eyes)}));
-  setStyle(prev => ({...prev,ear:randomStyle(ears)}));
-  setStyle(prev => ({...prev,mouth:randomStyle(mouth)}));
-  setStyle(prev => ({...prev,neck:randomStyle(neck)}));
-  setStyle(prev => ({...prev,leg:randomStyle(leg)}));
+  setStyle(prev => ({...prev,accessory:randAccess[0]}));
+  setBtnPair((prev) => ({...prev,accessory:randAccess[1]}))
+
+  setStyle(prev => ({...prev,background:randBg[0]}));
+  setBtnPair((prev) => ({...prev,background:randBg[1]}))
+
+  setStyle(prev => ({...prev,ear:randEar[0]}));
+  setBtnPair((prev) => ({...prev,ear:randEar[1]}))
+
+  setStyle(prev => ({...prev,eye:randEye[0]}));
+  setBtnPair((prev) => ({...prev,eye:randEye[1]}))
+
+  setStyle(prev => ({...prev,hair:randHair[0]}));
+  setBtnPair((prev) => ({...prev,hair:randHair[1]}))
+
+  setStyle(prev => ({...prev,leg:randLeg[0]}));
+  setBtnPair((prev) => ({...prev,leg:randLeg[1]}))
+
+  setStyle(prev => ({...prev,mouth:randMouth[0]}));
+  setBtnPair((prev) => ({...prev,mouth:randMouth[1]}))
+
+  setStyle(prev => ({...prev,neck:randNeck[0]}));
+  setBtnPair((prev) => ({...prev,neck:randNeck[1]}))
+  
     
   }
 
+
   const randomStyle = (body) => {
     const length = Object.keys(body).length;
-    const randomHair = Math.floor(Math.random() * length);
-    let text = Object.keys(body)[randomHair]
+    const randomPart = Math.floor(Math.random() * length);
     
-    return body[text];
+    let text = Object.keys(body)[randomPart]
+    
+    
+    return [body[text],randomPart];
   }
 
   

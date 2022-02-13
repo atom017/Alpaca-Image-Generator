@@ -1,17 +1,75 @@
 import React,{useEffect, useState} from 'react';
 import {hair,ears,accessories,backgrounds,eyes,leg,mouth,neck} from './config'
-import Button from './Buttons/Button';
+
 import { useDefaultContext } from '../Context';
 import './styles.css'
 
 const Styles = () => {
-  const {style,setStyle,bodyPart} = useDefaultContext();
-
+  const {style,setStyle,bodyPart,btnPair,setBtnPair} = useDefaultContext();
+  const [activeId,setActiveId] = useState(0);
   const [text,setText] = useState('default');
   
+  const handleStyleClick = (styleText,i) =>{
+    setText(styleText);
+    
+    switch(bodyPart){
+      case 'hair':
+        setBtnPair(prev => ({...prev,hair:i}))
+        break;
+      case 'ear':
+        setBtnPair(prev => ({...prev,ear:i}))
+        break;
+      case 'eye':
+        setBtnPair(prev => ({...prev,eye:i}))
+        break;
+
+      case 'mouth':
+        setBtnPair(prev => ({...prev,mouth:i}))
+        break;
+      case 'neck':
+        setBtnPair(prev => ({...prev,neck:i}))
+        break;
+      case 'leg':
+        setBtnPair(prev => ({...prev,leg:i}))
+        break;
+      
+      case 'background':
+        setBtnPair(prev => ({...prev,background:i}))
+        break;
+
+      case 'accessory':
+        setBtnPair(prev => ({...prev,accessory:i}))
+        break;
+
+    }
+    
+    
+  }
+  const BtnProducer = (obj) =>{
+   
+    return Object.keys(obj).map((item,index) => 
+       { 
+         return <button 
+        className='style-btn'
+         key={index} 
+         onClick={() =>handleStyleClick(item,index)}
+         className={index === activeId ?'active style-btn':'style-btn'}
+         >{item}</button>
+       } )
+  }
+
+  useEffect(()=>{
+    
+    setActiveId(btnPair[bodyPart])
+    //setActiveId(0);
+  },[btnPair])
 
   useEffect(() =>{
-    console.log('inside styles: ',text);
+    setActiveId(btnPair[bodyPart])
+  },[bodyPart])
+
+  useEffect(() =>{
+    
     switch(bodyPart){
       case 'hair':
         setStyle(prev => ({...prev,hair:`${hair[text]}`}));
@@ -48,96 +106,48 @@ const Styles = () => {
     case'background':
       return (<div className='style-container'>
         <h2>Background</h2>
-        {Object.keys(backgrounds).map((item,index) => 
-        <Button 
-        className='style-btn'
-         key={index} 
-         onClick={(data) => setText(data)}
-         text={item}/>)
-         }
+        {BtnProducer(backgrounds)}
       </div>)
-      break;
+      
     case'hair':
       return (<div className='style-container'>
         <h2>Hair</h2>
-        {Object.keys(hair).map((item,index) => 
-        <Button 
-        className='style-btn'
-         key={index} 
-         onClick={(data) => setText(data)}
-         text={item}/>)
-         }
+        {BtnProducer(hair)}
       </div>)
-      break;
+     
     case 'ear':
       return (<div className='style-container'>
         <h2>Ear</h2>
-        {Object.keys(ears).map((item,index) => 
-        <Button 
-        className='style-btn'
-         key={index} 
-         onClick={(data) => setText(data)}
-         text={item}/>)
-         }
+        {BtnProducer(ears)}
       </div>)
       
     case 'eye':
       return (<div className='style-container'>
         <h2>Eye</h2>
-        {Object.keys(eyes).map((item,index) => 
-        <Button 
-        className='style-btn'
-         key={index} 
-         onClick={(data) => setText(data)}
-         text={item}/>)
-         }
+        {BtnProducer(eyes)}
       </div>)
       
     case 'mouth':
       
       return (<div className='style-container'>
         <h2>Mouth</h2>
-        {Object.keys(mouth).map((item,index) => 
-        <Button
-        className='style-btn' 
-         key={index} 
-         onClick={(data) => setText(data)}
-         text={item}/>)
-         }
+        {BtnProducer(mouth)}
       </div>)
       
       case 'neck':
         return (<div className='style-container'>
           <h2>Neck</h2>
-          {Object.keys(neck).map((item,index) => 
-          <Button 
-          className='style-btn'
-           key={index} 
-           onClick={(data) => setText(data)}
-           text={item}/>)
-           }
+          {BtnProducer(neck)}
         </div>)
     case 'leg':
       return (<div className='style-container'>
         <h2>Leg</h2>
-        {Object.keys(leg).map((item,index) => 
-        <Button 
-        className='style-btn'
-         key={index} 
-         onClick={(data) => setText(data)}
-         text={item}/>)
-         }
+        {BtnProducer(leg)}
       </div>)
     case 'accessory':
       return (<div className='style-container'>
         <h2>Accessories</h2>
-        {Object.keys(accessories).map((item,index) => 
-        <Button 
-        className='style-btn'
-         key={index} 
-         onClick={(data) => setText(data)}
-         text={item}/>)
-         }
+        {BtnProducer(accessories)}
       </div>)
     default :
         return <h2>nothing to show</h2>

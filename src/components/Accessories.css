@@ -1,8 +1,26 @@
 .access-container{
-    width:60%;
+    width:70%;
     margin-bottom: 1rem;
 }
 
 .access-btns{
     width:100%;
+}
+
+
+.style-btn{
+    padding:0.5rem 1.5rem;
+    margin:5px 10px 5px 0px;
+    border-radius: 15px;
+    border:#9edff3;
+}
+.active{
+    background-color: cadetblue;
+}
+
+@media screen and (max-width:768px){
+    .access-container{
+        width:100%;
+        
+    }
 }
