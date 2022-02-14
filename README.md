@@ -14,6 +14,10 @@
     </a>
   </h3>
 </div>
+
+## Overview
+
+![screenshot](https://github.com/atom017/Alpaca-Image-Generator/blob/main/public/alpaca.png)
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
