@@ -1,7 +1,19 @@
 <h1>Solution of Codementor Challenge</h1>
-<a href="https://alpaca-codementorchallenge.netlify.app/">
+<div align="center">
+  <h3>
+    <a href="https://alpaca-codementorchallenge.netlify.app/">
       Demo
-</a>
+    </a>
+    <span> | </span>
+    <a href="https://github.com/atom017/Alpaca-Image-Generator">
+      Solution
+    </a>
+    <span> | </span>
+    <a href="https://www.codementor.io/projects/web/alpaca-image-generator-website-ce2oc0eus8">
+      Challenge
+    </a>
+  </h3>
+</div>
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
