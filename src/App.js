@@ -10,6 +10,8 @@ import {exportComponentAsPNG} from 'react-component-export-image'
 
 function App() {
   const {style,setStyle,btnPair,setBtnPair} = useDefaultContext();
+  const componentRef = useRef()
+
   const getRandomStyle = () =>{
   const randAccess = randomStyle(accessories);
   const randBg = randomStyle(backgrounds);
@@ -52,10 +54,7 @@ function App() {
   const randomStyle = (body) => {
     const length = Object.keys(body).length;
     const randomPart = Math.floor(Math.random() * length);
-    
     let text = Object.keys(body)[randomPart]
-    
-    
     return [body[text],randomPart];
   }
 
@@ -65,10 +64,10 @@ function App() {
     <div className="App">
       <div className="wrapper">
           <div className="alpaca-container">
-            <Alpaca/>
+            <Alpaca ref={componentRef}/>
             <div className="alpaca-btns">
               <button onClick={getRandomStyle}>Random</button>
-              <button>Download</button>
+              <button onClick={() => exportComponentAsPNG(componentRef)}>Download</button>
             </div>
         </div>
         <div className='customizable'>

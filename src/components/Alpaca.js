@@ -1,14 +1,14 @@
 import React,{useEffect} from 'react';
 import { useDefaultContext } from '../Context';
 import './Alpaca.css'
-const Alpaca = () => {
+const Alpaca = React.forwardRef((props,ref) => {
   
   const {style} = useDefaultContext();
  
   const {accessory,background,ear,eye,hair,mouth,neck,leg} = style;
- 
+  console.log(ref);
   return (
-      <div className='alpaca'>
+      <div className='alpaca' ref={ref}>
           
           <img 
           className='background'
@@ -48,6 +48,6 @@ const Alpaca = () => {
           alt="logo" />
       </div>
   );
-};
+});
 
 export default Alpaca;
